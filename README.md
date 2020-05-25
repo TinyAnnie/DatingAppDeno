@@ -10,7 +10,7 @@ Simple example Api Rest with Deno and Oak
 ## Run Deno
 
 ```
-    $ deno run --allow-net --allow-read --allow-write index.ts 
+    $ deno run --allow-net --allow-read --allow-write src/index.ts 
 ```
 
 ## Getting with Curl
