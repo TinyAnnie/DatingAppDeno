@@ -1,4 +1,4 @@
-import { createUser } from "./../services/userService.ts";
+import { createUser } from "../../services/userService.ts";
 
 export default async ({
   request,
@@ -7,28 +7,32 @@ export default async ({
   request: any;
   response: any;
 }) => {
+  console.log("sasasas",!request.hasBody)
   if (!request.hasBody) {
     response.status = 400;
-    response.body = { message: "Invalid book data" };
+    response.body = { message: "Invalid user data" };
     return;
   }
-
+console.log(request.body(), "ddddddd")
   const {
-    value: { title, description, price },
+    value: { Username,PasswordHash,PasswordSalt, Gender, DateOfBirth,KnownAs,Created,
+      LastActive,Introduction,LookingFor, Interests,City ,Country },
   } = await request.body();
-
-  if (!age || !description || !price) {
+  console.log("----------------",Username)
+  if (!Username || !PasswordHash || !PasswordSalt || !Gender || !DateOfBirth || !KnownAs || !Created || !LastActive ||
+    !Introduction || !LookingFor || !Interests || !City || !Country) {
     response.status = 422;
     response.body = {
-      message: "Incorrect book data. Title, Description and price are required",
+      message: "Bad request!",
     };
     return;
   }
 
-  const book = await createUser({ title, description, price });
+  const user = await createUser({Username,PasswordHash,PasswordSalt, Gender, DateOfBirth,KnownAs,Created,
+    LastActive,Introduction,LookingFor, Interests,City ,Country  });
 
   response.body = {
-    message: "Book created",
-    data: book
+    message: "User created",
+    data: user
   };
 };
