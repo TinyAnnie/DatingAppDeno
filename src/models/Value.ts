@@ -1,8 +1,9 @@
 import client from "../db/database.ts";
 
 class Value {
-  findAll() {
-    return client.execute("SELECT * FROM values ORDER BY Id");
+  findAll(filter = {}) {
+    const query = "SELECT * FROM values ORDER BY Id ";
+    return client.execute("");
   }
 
   findById(id: string) {

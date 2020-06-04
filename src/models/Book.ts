@@ -2,7 +2,7 @@ import client from "../db/database.ts";
 
 class Book {
   findAll() {
-    return client.execute("SELECT * FROM books ORDER BY id");
+    return client.execute("SELECT * FROM users ORDER BY Id");
   }
 
   findById(id: string) {
